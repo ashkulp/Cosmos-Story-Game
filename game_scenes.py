@@ -45,6 +45,13 @@ def introScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
+    # input container with buttons
+    for direction in directions:
+        if st.button(direction.capitalize()):
+            # when a button is clicked, set the scene action and trigger the reaction
+            st.session_state["temp"] = direction
+            st.experimental_rerun()
+
     # input container
     # there are a few things going on here:
     # 1. we take user input
