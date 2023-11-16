@@ -142,6 +142,16 @@ def unicornScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
+    # input container with buttons
+    if st.button("Left"):
+        st.session_state["temp"] = "left"
+    if st.button("Right"):
+        st.session_state["temp"] = "right"
+    if st.button("Back"):
+        st.session_state["temp"] = "back"
+    if st.button("Pet"):
+        st.session_state["temp"] = "pet"
+    
     # clearing text_input was suprisingly hard to figure out
     directions_container.text_input(
         "What to do?",
@@ -261,6 +271,14 @@ def caveScene():
 
     directions_container = st.empty()
 
+    # input container with buttons
+    if st.button("up"):
+        st.session_state["temp"] = "up"
+    if st.button("back"):
+        st.session_state["temp"] = "back"
+    if st.button("Help"):
+        st.session_state["temp"] = "help"
+
     # caption below input
     st.caption(game_config.caption_below_input)
 
@@ -338,6 +356,16 @@ def astroScene():
 
     # caption below input
     st.caption(game_config.caption_below_input)
+
+    # input container with buttons
+    if st.button("Left"):
+        st.session_state["temp"] = "left"
+    if st.button("Right"):
+        st.session_state["temp"] = "right"
+    if st.button("back"):
+        st.session_state["temp"] = "back"
+    if st.button("buy"):
+        st.session_state["temp"] = "buy"
 
     directions_container.text_input(
         "What to do?",
@@ -420,6 +448,8 @@ def dragonScene():
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format="audio/mpeg")
 
+
+
     # without a sword you will die
     if st.session_state.sword == 0:
         st.success(
@@ -448,6 +478,16 @@ def dragonScene():
         #     "What to do?", key="dragonSceneActions"
         # )
 
+        # input container with buttons
+    if st.button("fight"):
+        st.session_state["temp"] = "fight"
+    if st.button("up"):
+        st.session_state["temp"] = "up"
+    if st.button("back"):
+        st.session_state["temp"] = "back"
+    if st.button("Help"):
+        st.session_state["temp"] = "help"
+        
         directions_container.text_input(
             "What to do?",
             key="dragonSceneActions",  # potentially dynamic key based on function name?
@@ -565,6 +605,16 @@ def southpathScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
+    # input container with buttons
+    if st.button("North"):
+        st.session_state["temp"] = "north"
+    if st.button("South"):
+        st.session_state["temp"] = "south"
+    if st.button("back"):
+        st.session_state["temp"] = "back"
+    if st.button("Help"):
+        st.session_state["temp"] = "help"
+    
     directions_container.text_input(
         "What to do?",
         key=scene_identifier + "SceneActions",
@@ -660,6 +710,16 @@ def elfScene():
 
     # caption below input
     st.caption(game_config.caption_below_input)
+
+    # input container with buttons
+    if st.button("North"):
+        st.session_state["temp"] = "north"
+    if st.button("back"):
+        st.session_state["temp"] = "back"
+    if st.button("accept"):
+        st.session_state["temp"] = "accept"
+    if st.button("Help"):
+        st.session_state["temp"] = "help"
 
     directions_container.text_input(
         "What to do?",
