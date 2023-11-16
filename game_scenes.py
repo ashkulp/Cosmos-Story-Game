@@ -45,15 +45,6 @@ def introScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
-    # input container with buttons
-    if st.button("Left"):
-        st.session_state["temp"] = "left"
-    if st.button("Right"):
-        st.session_state["temp"] = "right"
-    if st.button("South"):
-        st.session_state["temp"] = "south"
-    if st.button("Help"):
-        st.session_state["temp"] = "help"
 
     # input container
     # there are a few things going on here:
