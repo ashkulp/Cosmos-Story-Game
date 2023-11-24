@@ -45,7 +45,6 @@ def introScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
-
     # input container
     # there are a few things going on here:
     # 1. we take user input
@@ -57,6 +56,16 @@ def introScene():
         on_change=game_def.clear,
         args=["introSceneActions"],
     )
+
+    # input container with buttons
+    if st.button("Left"):
+        st.session_state["temp"] = "left"
+    if st.button("Right"):
+        st.session_state["temp"] = "right"
+    if st.button("South"):
+        st.session_state["temp"] = "south"
+    if st.button("Help"):
+        st.session_state["temp"] = "help"
 
     # this is probably redundancy
     scene_action = st.session_state["temp"]
@@ -133,6 +142,13 @@ def unicornScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
+    # clearing text_input was suprisingly hard to figure out
+    directions_container.text_input(
+        "What to do?",
+        key="sheepSceneActions",
+        on_change=game_def.clear,
+        args=["sheepSceneActions"],
+    )
     # input container with buttons
     if st.button("Left"):
         st.session_state["temp"] = "left"
@@ -142,14 +158,6 @@ def unicornScene():
         st.session_state["temp"] = "back"
     if st.button("Pet"):
         st.session_state["temp"] = "pet"
-    
-    # clearing text_input was suprisingly hard to figure out
-    directions_container.text_input(
-        "What to do?",
-        key="sheepSceneActions",
-        on_change=game_def.clear,
-        args=["sheepSceneActions"],
-    )
 
     scene_action = st.session_state["temp"]
 
@@ -262,14 +270,6 @@ def caveScene():
 
     directions_container = st.empty()
 
-    # input container with buttons
-    if st.button("up"):
-        st.session_state["temp"] = "up"
-    if st.button("back"):
-        st.session_state["temp"] = "back"
-    if st.button("Help"):
-        st.session_state["temp"] = "help"
-
     # caption below input
     st.caption(game_config.caption_below_input)
 
@@ -285,6 +285,14 @@ def caveScene():
         args=["caveSceneActions"],
     )
 
+    # input container with buttons
+    if st.button("up"):
+        st.session_state["temp"] = "up"
+    if st.button("back"):
+        st.session_state["temp"] = "back"
+    if st.button("Help"):
+        st.session_state["temp"] = "help"
+        
     scene_action = st.session_state["temp"]
 
     if scene_action.lower() in directions:
@@ -348,6 +356,13 @@ def astroScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
+    directions_container.text_input(
+        "What to do?",
+        key="poSceneActions",  # potentially dynamic key based on function name?
+        on_change=game_def.clear,
+        args=["poSceneActions"],  # potentially dynamic key based on function name?
+    )
+
     # input container with buttons
     if st.button("Left"):
         st.session_state["temp"] = "left"
@@ -357,13 +372,6 @@ def astroScene():
         st.session_state["temp"] = "back"
     if st.button("buy"):
         st.session_state["temp"] = "buy"
-
-    directions_container.text_input(
-        "What to do?",
-        key="poSceneActions",  # potentially dynamic key based on function name?
-        on_change=game_def.clear,
-        args=["poSceneActions"],  # potentially dynamic key based on function name?
-    )
 
     scene_action = st.session_state["temp"]
 
@@ -439,8 +447,6 @@ def dragonScene():
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format="audio/mpeg")
 
-
-
     # without a sword you will die
     if st.session_state.sword == 0:
         st.success(
@@ -469,16 +475,6 @@ def dragonScene():
         #     "What to do?", key="dragonSceneActions"
         # )
 
-        # input container with buttons
-    if st.button("fight"):
-        st.session_state["temp"] = "fight"
-    if st.button("up"):
-        st.session_state["temp"] = "up"
-    if st.button("back"):
-        st.session_state["temp"] = "back"
-    if st.button("Help"):
-        st.session_state["temp"] = "help"
-        
         directions_container.text_input(
             "What to do?",
             key="dragonSceneActions",  # potentially dynamic key based on function name?
@@ -488,6 +484,15 @@ def dragonScene():
             ],  # potentially dynamic key based on function name?
         )
 
+        if st.button("fight"):
+            st.session_state["temp"] = "fight"
+        if st.button("up"):
+            st.session_state["temp"] = "up"
+        if st.button("back"):
+            st.session_state["temp"] = "back"
+        if st.button("Help"):
+            st.session_state["temp"] = "help"
+            
         scene_action = st.session_state["temp"]
 
         if scene_action.lower() in directions:
@@ -596,6 +601,13 @@ def southpathScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
+    directions_container.text_input(
+        "What to do?",
+        key=scene_identifier + "SceneActions",
+        on_change=game_def.clear,
+        args=[scene_identifier + "SceneActions"],
+    )
+
     # input container with buttons
     if st.button("North"):
         st.session_state["temp"] = "north"
@@ -605,13 +617,6 @@ def southpathScene():
         st.session_state["temp"] = "back"
     if st.button("Help"):
         st.session_state["temp"] = "help"
-    
-    directions_container.text_input(
-        "What to do?",
-        key=scene_identifier + "SceneActions",
-        on_change=game_def.clear,
-        args=[scene_identifier + "SceneActions"],
-    )
 
     scene_action = st.session_state["temp"]
 
@@ -672,7 +677,6 @@ def elfScene():
         Her movements are as fluid and enchanting as a cosmic dance, and with a wave of her hand, she manipulates the energies around her. 
         It's evident that her power transcends the natural order of the universe. 
         Her voice, a harmonious blend of music and authority, resonates with ancient wisdom and knowledge that surpasses mortal understanding.
-        
         The elf goddess reveals that she has been observing your journey and senses a destiny of cosmic proportions awaiting you. 
         With a benevolent smile, she offers her assistance. You can feel the cosmic magic emanating from her, a force that could prove invaluable in the challenges that lie ahead. 
         Will you accept the guidance and cosmic power of this ethereal being as you continue your interstellar journey?.
@@ -702,6 +706,13 @@ def elfScene():
     # caption below input
     st.caption(game_config.caption_below_input)
 
+    directions_container.text_input(
+        "What to do?",
+        key=scene_identifier + "SceneActions",
+        on_change=game_def.clear,
+        args=[scene_identifier + "SceneActions"],
+    )
+
     # input container with buttons
     if st.button("North"):
         st.session_state["temp"] = "north"
@@ -711,13 +722,6 @@ def elfScene():
         st.session_state["temp"] = "accept"
     if st.button("Help"):
         st.session_state["temp"] = "help"
-
-    directions_container.text_input(
-        "What to do?",
-        key=scene_identifier + "SceneActions",
-        on_change=game_def.clear,
-        args=[scene_identifier + "SceneActions"],
-    )
 
     scene_action = st.session_state["temp"]
 
